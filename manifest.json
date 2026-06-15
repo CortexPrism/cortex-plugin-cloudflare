@@ -1,0 +1,75 @@
+{
+  "name": "cortex-plugin-cloudflare",
+  "version": "1.0.0",
+  "description": "Deploy edge functions, manage KV, D1 databases",
+  "kind": "esm",
+  "entryPoint": "mod.ts",
+  "runtime": "deno",
+  "author": "CortexPrism",
+  "license": "MIT",
+  "repository": "https://github.com/CortexPrism/cortex-plugin-cloudflare",
+  "capabilities": [
+    "tools",
+    "network:fetch",
+    "shell:run"
+  ],
+  "tools": [
+    {
+      "name": "cf_deploy_worker",
+      "description": "Deploy a Cloudflare Worker",
+      "params": [
+        { "name": "script", "type": "string", "description": "Worker script content", "required": true },
+        { "name": "worker_name", "type": "string", "description": "Worker name", "required": true },
+        { "name": "route", "type": "string", "description": "Route pattern", "required": false }
+      ]
+    },
+    {
+      "name": "cf_kv_put",
+      "description": "Put a value into KV store",
+      "params": [
+        { "name": "namespace_id", "type": "string", "description": "KV namespace ID", "required": true },
+        { "name": "key", "type": "string", "description": "Key name", "required": true },
+        { "name": "value", "type": "string", "description": "Value to store", "required": true },
+        { "name": "expiration_ttl", "type": "number", "description": "Expiration TTL in seconds", "required": false }
+      ]
+    },
+    {
+      "name": "cf_kv_get",
+      "description": "Get a value from KV store",
+      "params": [
+        { "name": "namespace_id", "type": "string", "description": "KV namespace ID", "required": true },
+        { "name": "key", "type": "string", "description": "Key name", "required": true }
+      ]
+    },
+    {
+      "name": "cf_d1_query",
+      "description": "Query a D1 database",
+      "params": [
+        { "name": "database_id", "type": "string", "description": "D1 database ID", "required": true },
+        { "name": "query", "type": "string", "description": "SQL query to execute", "required": true },
+        { "name": "params", "type": "string", "description": "Query parameters as JSON array", "required": false }
+      ]
+    },
+    {
+      "name": "cf_list_zones",
+      "description": "List DNS zones",
+      "params": []
+    }
+  ],
+  "ui": {
+    "section": "Cloudflare",
+    "fields": [
+      { "key": "cfApiToken", "label": "API Token", "type": "secret", "description": "Cloudflare API token", "required": true },
+      { "key": "cfAccountId", "label": "Account ID", "type": "text", "description": "Cloudflare account ID", "required": true },
+      { "key": "cfZoneId", "label": "Zone ID", "type": "text", "description": "Default zone ID (optional)" }
+    ]
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "cortex": ">=1.0.0"
+  },
+  "aiDisclosure": {
+    "tools": ["Claude Code (Anthropic)"],
+    "humanReview": true
+  }
+}
