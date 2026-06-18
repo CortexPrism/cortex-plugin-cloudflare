@@ -3,6 +3,7 @@ import type { PluginContext, Tool, ToolCallResult, ToolContext } from './types.t
 let config: Record<string, string> = {};
 
 export async function onLoad(ctx: PluginContext): Promise<void> {
+  ctx.logger.info(`[cortex-plugin-cloudflare] Loaded`);
   config = {
     cfApiToken: (await ctx.config.get('cfApiToken')) ?? '',
     cfAccountId: (await ctx.config.get('cfAccountId')) ?? '',

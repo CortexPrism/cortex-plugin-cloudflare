@@ -1,6 +1,6 @@
 {
   "name": "cortex-plugin-cloudflare",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Deploy edge functions, manage KV, D1 databases",
   "kind": "esm",
   "entryPoint": "mod.ts",
@@ -24,8 +24,18 @@
           "description": "Worker script content",
           "required": true
         },
-        { "name": "worker_name", "type": "string", "description": "Worker name", "required": true },
-        { "name": "route", "type": "string", "description": "Route pattern", "required": false }
+        {
+          "name": "worker_name",
+          "type": "string",
+          "description": "Worker name",
+          "required": true
+        },
+        {
+          "name": "route",
+          "type": "string",
+          "description": "Route pattern",
+          "required": false
+        }
       ]
     },
     {
@@ -38,8 +48,18 @@
           "description": "KV namespace ID",
           "required": true
         },
-        { "name": "key", "type": "string", "description": "Key name", "required": true },
-        { "name": "value", "type": "string", "description": "Value to store", "required": true },
+        {
+          "name": "key",
+          "type": "string",
+          "description": "Key name",
+          "required": true
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "description": "Value to store",
+          "required": true
+        },
         {
           "name": "expiration_ttl",
           "type": "number",
@@ -58,7 +78,12 @@
           "description": "KV namespace ID",
           "required": true
         },
-        { "name": "key", "type": "string", "description": "Key name", "required": true }
+        {
+          "name": "key",
+          "type": "string",
+          "description": "Key name",
+          "required": true
+        }
       ]
     },
     {
@@ -92,27 +117,31 @@
     }
   ],
   "ui": {
-    "section": "Cloudflare",
-    "fields": [
+    "settings": [
       {
-        "key": "cfApiToken",
-        "label": "API Token",
-        "type": "secret",
-        "description": "Cloudflare API token",
-        "required": true
-      },
-      {
-        "key": "cfAccountId",
-        "label": "Account ID",
-        "type": "text",
-        "description": "Cloudflare account ID",
-        "required": true
-      },
-      {
-        "key": "cfZoneId",
-        "label": "Zone ID",
-        "type": "text",
-        "description": "Default zone ID (optional)"
+        "section": "Cloudflare",
+        "fields": [
+          {
+            "key": "cfApiToken",
+            "label": "API Token",
+            "type": "secret",
+            "description": "Cloudflare API token",
+            "required": true
+          },
+          {
+            "key": "cfAccountId",
+            "label": "Account ID",
+            "type": "text",
+            "description": "Cloudflare account ID",
+            "required": true
+          },
+          {
+            "key": "cfZoneId",
+            "label": "Zone ID",
+            "type": "text",
+            "description": "Default zone ID (optional)"
+          }
+        ]
       }
     ]
   },
@@ -121,7 +150,10 @@
     "cortex": ">=1.0.0"
   },
   "aiDisclosure": {
-    "tools": ["Claude Code (Anthropic)"],
+    "tools": [
+      "Claude Code (Anthropic)"
+    ],
     "humanReview": true
-  }
+  },
+  "homepage": "https://github.com/CortexPrism/cortex-plugin-cloudflare"
 }
