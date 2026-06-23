@@ -1,6 +1,6 @@
 {
   "name": "cortex-plugin-cloudflare",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Deploy edge functions, manage KV, D1 databases",
   "kind": "esm",
   "entryPoint": "mod.ts",
@@ -147,7 +147,7 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "cortex": ">=1.0.0"
+    "cortex": ">=0.51.0"
   },
   "aiDisclosure": {
     "tools": [
